@@ -13,6 +13,17 @@ const refs = {
   contryList: document.querySelector('.listCountry'),
 };
 
+function makeAler(massege) {
+  alert({
+    text: massege,
+    closer: false,
+    sticker: false,
+    type: 'error',
+    height: '100px',
+    closerHover: true,
+  });
+}
+
 function createListCountry(contry, temp) {
   const arr = contry.map(temp).join('');
   refs.contryList.insertAdjacentHTML('afterbegin', arr);
@@ -32,37 +43,14 @@ function onInput(e) {
       return contry;
     })
     .then(contry => {
-      if (contry.length > 10)
-        alert({
-          text: 'Too many matches found. Please enter a more query',
-          closer: false,
-          sticker: false,
-          type: 'error',
-          height: '100px',
-          closerHover: true,
-        });
+      if (contry.length > 10) makeAler('Too many matches found. Please enter a more query');
       return contry;
     })
     .then(contry => {
-      if (contry.status === 404)
-        alert({
-          text: 'Not such city. Try better!!!',
-          closer: false,
-          sticker: false,
-          type: 'error',
-          height: '100px',
-          closerHover: true,
-        });
+      if (contry.status === 404) makeAler('There is no such city. Try better!!!');
     })
     .catch(error => {
-      alert({
-        text: error,
-        closer: false,
-        sticker: false,
-        type: 'error',
-        height: '100px',
-        closerHover: true,
-      });
+      makeAler(error);
     })
     .finally(() => refs.input.reset());
 }
