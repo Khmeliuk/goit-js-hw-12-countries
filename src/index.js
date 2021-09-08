@@ -5,6 +5,7 @@ import contries from './templates/contry.hbs';
 import '@pnotify/core/dist/BrightTheme.css';
 import {fetchV } from './partials/fetchCountries.js'
 import { alert, defaultModules } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
 
 const refs  = {
     input: document.querySelector('.input_js'),
